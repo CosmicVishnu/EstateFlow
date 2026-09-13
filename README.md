@@ -19,17 +19,11 @@ EstateFlow is a production-ready Node.js & Express REST API built with TypeScrip
 
 ## 🏛️ Architectural Highlights
 
-<<<<<<< HEAD
-- **Compile-Time vs. Runtime Safety**: While TypeScript validates types at compile time, incoming HTTP payloads can drift at runtime. EstateFlow intercepts incoming requests via generic Zod middleware prior to controller execution, guaranteeing runtime payload validity.
-- **Relational Integrity in Document Storage**: Property listings and leads maintain referential links via Mongoose `ObjectId` references (`ref: 'Property'`), combined with lean query hydration via `.populate()` and compound indexing for multi-key lookups.
-- **Decoupled Background Tasks**: Background automation (`node-cron`) is isolated from the HTTP request-response cycle, executing maintenance tasks without blocking Node's event loop.
-=======
 - **Compile-Time vs. Runtime Safety**: TypeScript verifies types at build time, but HTTP payloads require validation at runtime. EstateFlow intercepts incoming requests via generic Zod middleware prior to controller execution, enforcing strict schema contracts at the API boundary.
 - **Relational Integrity in Document Storage**: Properties and leads maintain referential integrity via Mongoose `ObjectId` references (`ref: 'Property'`), utilizing lean query hydration via `.populate()` and indexed fields for query performance.
 - **Decoupled Background Tasks**: Scheduled automation via `node-cron` runs independently from the HTTP request-response pipeline to ensure database maintenance does not block request handling.
 
 ---
->>>>>>> 50ddfe4 (docs: clean markdown formatting and polish README documentation)
 
 ## 📁 Directory Layout
 
@@ -72,6 +66,7 @@ estateflow/
 ├── package.json
 └── tsconfig.json
 
+
 ---
 
 ## ⚙️ Environment Variables
@@ -81,17 +76,11 @@ Create a `.env` file in the root directory (see `.env.example`):
 ```env
 PORT=5000
 NODE_ENV=development
-<<<<<<< HEAD
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/estateflow?retryWrites=true&w=majority
-JWT_SECRET=estateflow_super_secret_jwt_key_2026_production_ready
-=======
 MONGO_URI=mongodb+srv://<db_user>:<db_password>@<cluster-url>/estateflow?retryWrites=true&w=majority
 JWT_SECRET=your_jwt_secret_key_here
->>>>>>> 50ddfe4 (docs: clean markdown formatting and polish README documentation)
 JWT_EXPIRES_IN=7d
 CORS_ORIGIN=*
 LOG_LEVEL=info
-
 🛠️ Scripts & Commands
 Bash
 # Install dependencies

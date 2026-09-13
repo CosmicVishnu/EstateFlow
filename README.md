@@ -17,6 +17,12 @@ EstateFlow is a production-ready Node.js & Express REST API built with TypeScrip
 
 ---
 
+## 🏛️ Architectural Highlights
+
+- **Compile-Time vs. Runtime Safety**: While TypeScript validates types at compile time, incoming HTTP payloads can drift at runtime. EstateFlow intercepts incoming requests via generic Zod middleware prior to controller execution, guaranteeing runtime payload validity.
+- **Relational Integrity in Document Storage**: Property listings and leads maintain referential links via Mongoose `ObjectId` references (`ref: 'Property'`), combined with lean query hydration via `.populate()` and compound indexing for multi-key lookups.
+- **Decoupled Background Tasks**: Background automation (`node-cron`) is isolated from the HTTP request-response cycle, executing maintenance tasks without blocking Node's event loop.
+
 ## 📁 Directory Layout
 
 ```
@@ -69,7 +75,7 @@ Create a `.env` file in the root directory (see `.env.example`):
 ```env
 PORT=5000
 NODE_ENV=development
-MONGODB_URI=mongodb://localhost:27017/estateflow
+MONGO_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/estateflow?retryWrites=true&w=majority
 JWT_SECRET=estateflow_super_secret_jwt_key_2026_production_ready
 JWT_EXPIRES_IN=7d
 CORS_ORIGIN=*

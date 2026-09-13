@@ -1,3 +1,4 @@
+Markdown
 # EstateFlow - Real Estate CRM & Lead Automation REST API
 
 EstateFlow is a production-ready Node.js & Express REST API built with TypeScript, MongoDB (Mongoose), Zod schema validation, JWT authentication, node-cron background scheduling, and Winston logging.
@@ -6,27 +7,28 @@ EstateFlow is a production-ready Node.js & Express REST API built with TypeScrip
 
 ## 🚀 Key Features
 
-- **TypeScript Strict Mode**: Zero implicit `any`, fully typed models, controllers, and schemas.
-- **Authentication & Authorization**: Secure user registration and login with bcrypt password hashing and signed JWT tokens with role-based access control (`admin`, `agent`, `user`).
-- **Data Validation with Zod**: Generic validation middleware parsing and validating `req.body`, `req.query`, and `req.params`, outputting structured `400 Bad Request` messages.
-- **Properties Management**: Full CRUD endpoints for real estate properties with search, price filters, status management (`available` / `sold`), and creator ownership protection.
-- **Leads & Inquiries Pipeline**: Endpoints to capture leads, filter by status (`new`, `contacted`, `qualified`, `lost`, `closed`), and link leads directly to properties.
-- **Automated Stale Lead Cron Job**: Daily midnight scheduler using `node-cron` scanning for unattended leads in `'new'` status older than 48 hours and alerting via Winston logger.
-- **Centralized Error Handling**: Unified error middleware translating Mongoose CastErrors, duplicate key constraints, validation failures, JWT errors, and unhandled rejections into standardized JSON error responses.
-- **Structured Winston Logging**: Production-grade logging format with timestamps, colorization in development, JSON output in production, and HTTP request latency tracking.
+* **TypeScript Strict Mode**: Zero implicit `any`, fully typed models, controllers, and schemas.
+* **Authentication & Authorization**: Secure user registration and login with bcrypt password hashing and signed JWT tokens with role-based access control (`admin`, `agent`, `user`).
+* **Data Validation with Zod**: Generic validation middleware parsing and validating `req.body`, `req.query`, and `req.params`, outputting structured `400 Bad Request` messages.
+* **Properties Management**: Full CRUD endpoints for real estate properties with search, price filters, status management (`available` / `sold`), and creator ownership protection.
+* **Leads & Inquiries Pipeline**: Endpoints to capture leads, filter by status (`new`, `contacted`, `qualified`, `lost`, `closed`), and link leads directly to properties.
+* **Automated Stale Lead Cron Job**: Daily midnight scheduler using `node-cron` scanning for unattended leads in `'new'` status older than 48 hours and alerting via Winston logger.
+* **Centralized Error Handling**: Unified error middleware translating Mongoose CastErrors, duplicate key constraints, validation failures, JWT errors, and unhandled rejections into standardized JSON error responses.
+* **Structured Winston Logging**: Production-grade logging format with timestamps, colorization in development, JSON output in production, and HTTP request latency tracking.
 
 ---
 
 ## 🏛️ Architectural Highlights
 
-- **Compile-Time vs. Runtime Safety**: TypeScript verifies types at build time, but HTTP payloads require validation at runtime. EstateFlow intercepts incoming requests via generic Zod middleware prior to controller execution, enforcing strict schema contracts at the API boundary.
-- **Relational Integrity in Document Storage**: Properties and leads maintain referential integrity via Mongoose `ObjectId` references (`ref: 'Property'`), utilizing lean query hydration via `.populate()` and indexed fields for query performance.
-- **Decoupled Background Tasks**: Scheduled automation via `node-cron` runs independently from the HTTP request-response pipeline to ensure database maintenance does not block request handling.
+* **Compile-Time vs. Runtime Safety**: TypeScript verifies types at build time, but HTTP payloads require validation at runtime. EstateFlow intercepts incoming requests via generic Zod middleware prior to controller execution, enforcing strict schema contracts at the API boundary.
+* **Relational Integrity in Document Storage**: Properties and leads maintain referential integrity via Mongoose `ObjectId` references (`ref: 'Property'`), utilizing lean query hydration via `.populate()` and indexed fields for query performance.
+* **Decoupled Background Tasks**: Scheduled automation via `node-cron` runs independently from the HTTP request-response pipeline to ensure database maintenance does not block request handling.
 
 ---
 
 ## 📁 Directory Layout
 
+```text
 estateflow/
 ├── dist/                          # Compiled JavaScript production build
 ├── src/
@@ -65,15 +67,10 @@ estateflow/
 ├── .gitignore
 ├── package.json
 └── tsconfig.json
+⚙️ Environment Variables
+Create a .env file in the root directory (see .env.example):
 
-
----
-
-## ⚙️ Environment Variables
-
-Create a `.env` file in the root directory (see `.env.example`):
-
-```env
+Code snippet
 PORT=5000
 NODE_ENV=development
 MONGO_URI=mongodb+srv://<db_user>:<db_password>@<cluster-url>/estateflow?retryWrites=true&w=majority
